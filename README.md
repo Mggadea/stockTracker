@@ -1,50 +1,74 @@
-# Welcome to your Expo app 👋
+# StockTracker
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+StockTracker is a React Native app built with Expo for tracking stock prices, managing watchlists, and setting price alerts. It leverages the Finnhub API for real-time stock data and provides a modern, mobile-friendly interface.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Stock Search:** Quickly search for stocks using the built-in search functionality.
+- **Watchlist:** Add stocks to your personal watchlist for easy monitoring.
+- **Price Alerts:** Set custom price alerts and receive notifications when your target price is reached.
+- **Real-Time Data:** View up-to-date stock prices and charts.
+- **Authentication:** Secure login and user management.
+- **Push Notifications:** Get notified instantly when alerts are triggered (powered by expo-notifications).
 
-   ```bash
-   npm install
-   ```
+## Project Structure
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+app/
+  _layout.tsx           # Main app layout
+  (tabs)/               # Tab navigation and screens
+    _layout.tsx
+    AddAlert.tsx
+    WatchList.tsx
+  graph/                # Stock graph screens
+    [symbol].tsx
+  hooks/                # Custom React hooks
+    useSearchStocks.ts
+    useStockPrice.ts
+assets/
+  images/               # App images and icons
+components/             # Reusable UI components
+constants/              # Theme and constants
+context/                # React Context providers
+helpers/                # Utility functions
+navigation/             # Navigation setup
+screens/                # App screens
+services/               # API and notification services
+types/                  # TypeScript types
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Key Dependencies
 
-## Learn more
+- [expo](https://docs.expo.dev/)
+- [react-native](https://reactnative.dev/)
+- [expo-notifications](https://docs.expo.dev/versions/latest/sdk/notifications/)
+- [axios](https://axios-http.com/)
+- [react-native-chart-kit](https://github.com/indiespirit/react-native-chart-kit)
 
-To learn more about developing your project with Expo, look at the following resources:
+## Getting Started
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+2. **Start the development server:**
+   ```sh
+   npm start
+   ```
+3. **Run on device or emulator:**
+   - For iOS: `npm run ios`
+   - For Android: `npm run android`
+   - For Web: `npm run web`
 
-## Join the community
+## Environment Variables
 
-Join our community of developers creating universal apps.
+- Configure your Finnhub API key and other secrets as needed. See `services/finnhubApi.ts` for details.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Scripts
+
+- `npm start` — Start Expo development server
+- `npm run ios` — Run on iOS simulator
+- `npm run android` — Run on Android emulator
+- `npm run web` — Run in web browser
+- `npm run lint` — Lint the codebase
+
