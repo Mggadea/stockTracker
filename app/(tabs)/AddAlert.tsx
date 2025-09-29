@@ -75,7 +75,6 @@ const AddAlert = () => {
           onChangeText={setPrice}
         />
       </View>
-
       <TouchableOpacity style={styles.button} onPress={handleAddAlert}>
         <Text style={styles.buttonText}>Add Alert</Text>
       </TouchableOpacity>
