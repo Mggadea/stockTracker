@@ -30,7 +30,11 @@ function InnerLayout({ colorScheme }: { colorScheme: string }) {
   const { modalVisible, modalInfo, closeModal } = usePriceAlertNotifications();
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="graph"
@@ -43,8 +47,12 @@ function InnerLayout({ colorScheme }: { colorScheme: string }) {
       <PriceAlertModal
         visible={modalVisible}
         symbol={modalInfo?.symbol || ""}
-        currentPrice={modalInfo?.currentPrice || 0}
-        alert={modalInfo?.alert }
+        currentPrice={
+          typeof modalInfo?.currentPrice === "number"
+            ? modalInfo.currentPrice
+            : 0
+        }
+        alert={modalInfo?.alert}
         onClose={closeModal}
       />
     </ThemeProvider>

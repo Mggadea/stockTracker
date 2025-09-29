@@ -29,8 +29,8 @@ export const usePriceAlertNotifications = () => {
             alert.price
           );
           setModalInfo({
-            symbol: alert.stock,
             currentPrice: quote.c,
+            symbol: alert.stock,
             alert: alert.price,
           });
           setModalVisible(true);

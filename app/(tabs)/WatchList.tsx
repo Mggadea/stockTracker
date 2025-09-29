@@ -3,13 +3,13 @@ import { useAlertContext } from "@/context/AlertContext";
 import { finnhubApi } from "@/services/finnhubApi";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type StockWithPrice = {
   symbol: string;
   currentPrice: number;
-  change: number; 
+  change: number;
 };
 
 const WatchListScreen = () => {
@@ -27,8 +27,8 @@ const WatchListScreen = () => {
             const quote = await finnhubApi.getQuote(alert.stock);
             return {
               symbol: alert.stock,
-              currentPrice: quote.c, 
-              change: quote.dp, 
+              currentPrice: quote.c,
+              change: quote.dp,
             };
           })
         );
@@ -58,10 +58,15 @@ const WatchListScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+
       <Text style={styles.screenTitle}>WatchList</Text>
       {stocks.length === 0 ? (
-        <Text>No Alerts</Text>
+        <View style={{ justifyContent: "center", alignItems: "center", flex:1 }}>
+          <Text style={{ color: "#cecece" }}>No Alerts</Text>
+        </View>
       ) : (
+
+        
         <FlatList
           data={stocks}
           keyExtractor={(item) => item.symbol}

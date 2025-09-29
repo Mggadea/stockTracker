@@ -1,6 +1,13 @@
 // CustomPicker.tsx
-import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 type Stock = {
   symbol: string;
@@ -15,24 +22,28 @@ type Props = {
   onQueryChange: (text: string) => void;
 };
 
-const CustomPicker: React.FC<Props> = ({ data, selected, onSelect, query, onQueryChange }) => {
+const CustomPicker: React.FC<Props> = ({
+  data,
+  selected,
+  onSelect,
+  query,
+  onQueryChange,
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.input}
-        onPress={() => setOpen(!open)}
-      >
-        <Text
-        style={{color:'#fff'}}
-        >{selected ? selected.symbol : 'Select stock...'}</Text>
+      <TouchableOpacity style={styles.input} onPress={() => setOpen(!open)}>
+        <Text style={{ color: "#ccc" }}>
+          {selected ? selected.symbol : "Select stock..."}
+        </Text>
       </TouchableOpacity>
 
       {open && (
         <View style={styles.dropdown}>
           <TextInput
             style={styles.search}
+            placeholderTextColor={'#ccc'}
             placeholder="Search stock..."
             value={query}
             onChangeText={onQueryChange}
@@ -48,7 +59,9 @@ const CustomPicker: React.FC<Props> = ({ data, selected, onSelect, query, onQuer
                   setOpen(false);
                 }}
               >
-                <Text>{item.symbol} - {item.description}</Text>
+                <Text style={styles.text}>
+                  {item.symbol} - {item.description}
+                </Text>
               </TouchableOpacity>
             )}
           />
@@ -64,31 +77,31 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
     backgroundColor: "#294947ff",
-    borderRadius:6,
-
-
+    borderRadius: 6,
   },
   input: {
-
     padding: 12,
     borderRadius: 6,
   },
   dropdown: {
-    borderWidth: 1,
-    borderColor: '#ccc',
+
     marginTop: 5,
     borderRadius: 6,
     maxHeight: 200,
   },
   search: {
-    color:'#fff',
+    color: "#fff",
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+
   },
   item: {
+    color: "#fff",
     padding: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: "#6a6a6a",
   },
+  text:{
+    color: "#fff",
+    
+  }
 });

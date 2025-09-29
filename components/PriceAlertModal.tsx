@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, StyleSheet, Text, View } from 'react-native';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import type { Alert } from '@/context/AlertContext';
 
@@ -12,7 +12,7 @@ interface PriceAlertModalProps {
 }
 
 const PriceAlertModal: React.FC<PriceAlertModalProps> = ({ visible, symbol, currentPrice, alert, onClose }) => {
-  const targetPrice = alert?.price ?? 0;
+  const targetPrice = alert
   return (
     <Modal
       visible={visible}
@@ -26,10 +26,14 @@ const PriceAlertModal: React.FC<PriceAlertModalProps> = ({ visible, symbol, curr
           <Text style={styles.text}>
             {symbol} has reached $
             {typeof currentPrice === 'number' ? currentPrice.toFixed(2) : 'N/A'}
-            {' '} (Target: $
-            {targetPrice.toFixed(2)})
+            {' '} 
+            alert price was: 
+            ${targetPrice}
           </Text>
-          <Button title="Close" onPress={onClose} />
+
+          <TouchableOpacity style={styles.button} onPress={onClose}>
+                  <Text style={styles.buttonText}>Close</Text>
+                </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -44,21 +48,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modal: {
-    backgroundColor: '#fff',
+    backgroundColor: '#294947ff',
     borderRadius: 10,
     padding: 24,
     alignItems: 'center',
     minWidth: 280,
   },
   title: {
+color:'#fff',
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 12,
   },
   text: {
+    color:'#ffff',
     fontSize: 16,
     marginBottom: 20,
     textAlign: 'center',
+  },
+  button: {
+    backgroundColor: "#21fa90",
+    width:300,
+
+    padding: 12,
+    borderRadius: 6,
+    alignItems: "center",
+
+  },
+  buttonText: {
+    color: "#6a6a6a",
+    fontWeight: "bold",
   },
 });
 
